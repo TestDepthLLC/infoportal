@@ -14,15 +14,32 @@
   </div>
   {% endif %}
 
+  {% comment %}
+    Build primary/secondary hrefs:
+    - If the URL starts with '/', prepend site.baseurl (project sites).
+    - Otherwise (http, https, mailto, #, relative like './' or 'page.html'), use as-is.
+  {% endcomment %}
+  {% assign primary = item.primary_url | default: item.url %}
+  {% if primary %}
+    {% assign href_primary = primary %}
+    {% if primary | slice: 0,1 == '/' %}
+      {% assign href_primary = site.baseurl | append: primary %}
+    {% endif %}
+  {% endif %}
+
+  {% assign href_secondary = item.secondary_url %}
+  {% if href_secondary and href_secondary | slice: 0,1 == '/' %}
+    {% assign href_secondary = site.baseurl | append: href_secondary %}
+  {% endif %}
+
   <div class="actions">
-    {% assign primary = item.primary_url | default: item.url %}
-    {% if primary %}
-      <a class="btn primary" href="{{ primary | prepend: site.baseurl }}">
+    {% if href_primary %}
+      <a class="btn primary" href="{{ href_primary }}">
         {{ item.primary_label | default: "Read guide" }}
       </a>
     {% endif %}
-    {% if item.secondary_url %}
-      <a class="btn" href="{{ item.secondary_url | prepend: site.baseurl }}">
+    {% if href_secondary %}
+      <a class="btn" href="{{ href_secondary }}">
         {{ item.secondary_label | default: "Download" }}
       </a>
     {% endif %}
