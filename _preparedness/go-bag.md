@@ -12,3 +12,9 @@ quick:
   - "Meds & prescriptions"
   - "IDs, cash, contacts"
 ---
+
+## Overview
+Starter packing list with emphasis on water, meds, ID copies, and light
+
+- Keep the tourniquet accessible
+- Stage batteries and charging

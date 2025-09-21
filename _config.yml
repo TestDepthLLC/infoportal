@@ -8,3 +8,10 @@ collections:
   preparedness:
     output: true
     permalink: /preparedness/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: preparedness
+    values:
+      layout: guide
