@@ -1,0 +1,59 @@
+<!-- FILE: preparedness/index.html -->
+<header>
+    <div class="eyebrow">How‑to</div>
+    <h3>Vehicle Kit</h3>
+    <p>Year‑round trunk essentials for roadside problems and evacuations.</p>
+    </header>
+    <div class="actions">
+    <a class="btn" href="vehicle-kit.html">Read guide</a>
+    <a class="btn" href="../assets/pdfs/vehicle-kit.pdf" download>Printable</a>
+    </div>
+    </article>
+    
+    
+    </div>
+    </div>
+    </section>
+    </main>
+    
+    
+    <footer>
+    <div class="container">
+    <p class="small">Text: CC BY‑SA 4.0 · Code: MIT · <a href="../">Return to home</a></p>
+    </div>
+    </footer>
+    
+    
+    <script type="module">
+    // Persisted theme
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') toggle.checked = true;
+    toggle.addEventListener('change', () => localStorage.setItem('theme', toggle.checked ? 'dark' : 'light'));
+    }
+    
+    
+    // Search & tag filter (scoped to this page)
+    const q = document.getElementById('q');
+    const chips = q ? [...document.querySelectorAll('.chip')] : [];
+    let activeTag = null;
+    function filterCards(){
+    const term = (q?.value || '').toLowerCase().trim();
+    document.querySelectorAll('.grid .card').forEach(card => {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = card.innerText.toLowerCase();
+    const tagMatch = activeTag ? tags.includes(activeTag) : true;
+    const textMatch = term ? text.includes(term) : true;
+    card.style.display = (tagMatch && textMatch) ? '' : 'none';
+    });
+    }
+    q?.addEventListener('input', filterCards);
+    chips.forEach(ch => ch.addEventListener('click', () => {
+    activeTag = (activeTag === ch.dataset.filter) ? null : ch.dataset.filter;
+    chips.forEach(c => c.classList.toggle('active', c === ch && activeTag));
+    filterCards();
+    }));
+    </script>
+    </body>
+    </html>

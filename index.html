@@ -1,374 +1,58 @@
+<!-- FILE: index.html -->
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Civic Resilience — Emergency • Secure Comms • Hot Topics</title>
-  <meta name="description" content="Preparedness guides, secure communication resources, and curated hot topics for engaged citizens." />
-  <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2300a37a'/%3E%3Cpath d='M50 18 L72 82 H28 Z' fill='white'/%3E%3C/svg%3E">
-  <style>
-    :root{
-      --bg: #0b0c10;
-      --bg-elev: #111218;
-      --text: #e6e7ea;
-      --muted: #b4b7c2;
-      --brand: #00a37a;
-      --brand-2: #4dc8b5;
-      --card: #13151d;
-      --border: #1f2230;
-      --link: #7fd3ff;
-      --warn: #ffcc00;
-    }
-    :root:has(#theme-toggle:not(:checked)){
-      color-scheme: light;
-      --bg: #ffffff;
-      --bg-elev: #f7f8fa;
-      --text: #191b22;
-      --muted: #495067;
-      --brand: #006a55;
-      --brand-2: #1aa38b;
-      --card: #ffffff;
-      --border: #e6e8ee;
-      --link: #0a66c2;
-      --warn: #8a6d00;
-    }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg: #ffffff;
-        --bg-elev: #f7f8fa;
-        --text: #191b22;
-        --muted: #495067;
-        --brand: #006a55;
-        --brand-2: #1aa38b;
-        --card: #ffffff;
-        --border: #e6e8ee;
-        --link: #0a66c2;
-        --warn: #8a6d00;
-      }
-    }
-    * { box-sizing: border-box }
-    html, body { height: 100% }
-    body{
-      margin:0; font: 16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; 
-      background: var(--bg); color: var(--text);
-    }
-    a{ color: var(--link); text-decoration: none }
-    a:hover{ text-decoration: underline }
-    .container{ width: min(1100px, 92%); margin-inline:auto }
-    header.site{
-      position: sticky; top:0; z-index: 50; backdrop-filter: blur(10px);
-      background: color-mix(in oklab, var(--bg) 85%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav{ display:flex; align-items:center; gap:1rem; padding: .75rem 0 }
-    .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700 }
-    .brand svg{ width:26px; height:26px }
-    .spacer{ flex:1 }
-    nav a{ padding:.4rem .6rem; border-radius:.6rem }
-    nav a.active, nav a:focus-visible{ outline: none; background: var(--bg-elev) }
-    .toggle-wrap{ display:flex; align-items:center; gap:.5rem }
-    .search{ display:flex; align-items:center; gap:.5rem; background: var(--bg-elev); border:1px solid var(--border); border-radius: .75rem; padding:.5rem .75rem }
-    .search input{ background:transparent; border:none; outline: none; color: var(--text); width: 12rem }
-
-    .hero{ padding: 3.5rem 0 2rem; border-bottom:1px solid var(--border); background: radial-gradient(1200px 400px at 50% -10%, color-mix(in oklab, var(--brand-2) 20%, transparent), transparent) }
-    .hero h1{ font-size: clamp(1.8rem, 3.6vw, 3rem); line-height:1.1; margin:0 0 .75rem }
-    .hero p{ color: var(--muted); max-width: 70ch }
-
-    .chips{ display:flex; gap:.5rem; flex-wrap: wrap; margin-top:1rem }
-    .chip{ border:1px solid var(--border); background: var(--card); color: var(--text); padding:.35rem .6rem; border-radius: 999px; cursor:pointer; font-size:.9rem }
-    .chip.active{ outline: 2px solid color-mix(in oklab, var(--brand) 60%, transparent) }
-
-    section{ padding: 2rem 0 }
-    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem }
-    .card{ border:1px solid var(--border); background: var(--card); border-radius: 1rem; overflow: clip; display:flex; flex-direction: column }
-    .card header{ padding: 1rem 1rem .25rem }
-    .eyebrow{ text-transform: uppercase; letter-spacing: .08em; font-size:.75rem; color: var(--muted) }
-    .card h3{ margin:.25rem 0 .25rem; font-size:1.1rem }
-    .card p{ margin:0; color: var(--muted) }
-    .card .body{ padding: 0 1rem 1rem }
-    .card .actions{ display:flex; gap:.5rem; padding: .75rem 1rem 1rem; margin-top:auto }
-    .btn{ display:inline-flex; align-items:center; gap:.5rem; border:1px solid var(--border); background: var(--bg-elev); color: var(--text); padding:.6rem .8rem; border-radius:.7rem; text-decoration:none }
-    .btn.primary{ background: var(--brand); color: white; border-color: color-mix(in oklab, var(--brand) 75%, black) }
-
-    details.accordion{ border:1px solid var(--border); background: var(--card); border-radius:.9rem; padding: .75rem 1rem }
-    details summary{ cursor: pointer; font-weight: 600 }
-    details[open] summary{ color: var(--brand-2) }
-
-    .notice{ display:flex; gap:.75rem; align-items:flex-start; background: color-mix(in oklab, var(--brand) 16%, transparent); border: 1px solid color-mix(in oklab, var(--brand) 55%, transparent); padding: .9rem 1rem; border-radius: .8rem }
-
-    footer{ border-top:1px solid var(--border); padding: 2rem 0; color: var(--muted) }
-    .footgrid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1rem }
-    .small{ font-size:.9rem }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Civic Resilience — Emergency • Secure Comms • Hot Topics</title>
+<meta name="description" content="Preparedness guides, secure communication resources, and curated hot topics for engaged citizens." />
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2300a37a'/%3E%3Cpath d='M50 18 L72 82 H28 Z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root{
+--bg:#0b0c10;--bg-elev:#111218;--text:#e6e7ea;--muted:#b4b7c2;--brand:#00a37a;--brand-2:#4dc8b5;--card:#13151d;--border:#1f2230;--link:#7fd3ff;--warn:#ffcc00;
+}
+:root:has(#theme-toggle:not(:checked)){
+color-scheme:light;--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00;
+}
+@media (prefers-color-scheme: light){:root{--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.container{width:min(1100px,92%);margin-inline:auto}
+header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:1rem;padding:.75rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700}.brand svg{width:26px;height:26px}
+.spacer{flex:1}
+nav a{padding:.4rem .6rem;border-radius:.6rem}nav a.active,nav a:focus-visible{outline:none;background:var(--bg-elev)}
+.toggle-wrap{display:flex;align-items:center;gap:.5rem}
+.search{display:flex;align-items:center;gap:.5rem;background:var(--bg-elev);border:1px solid var(--border);border-radius:.75rem;padding:.5rem .75rem}
+.search input{background:transparent;border:none;outline:none;color:var(--text);width:12rem}
+.hero{padding:3.5rem 0 2rem;border-bottom:1px solid var(--border);background: radial-gradient(1200px 400px at 50% -10%, color-mix(in oklab, var(--brand-2) 20%, transparent), transparent)}
+.hero h1{font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.1;margin:0 0 .75rem}
+.hero p{color:var(--muted);max-width:70ch}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:.35rem .6rem;border-radius:999px;cursor:pointer;font-size:.9rem}
+.chip.active{outline:2px solid color-mix(in oklab, var(--brand) 60%, transparent)}
+section{padding:2rem 0}
+.grid{display:grid;grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));gap:1rem}
+.card{border:1px solid var(--border);background:var(--card);border-radius:1rem;overflow:clip;display:flex;flex-direction:column}
+.card header{padding:1rem 1rem .25rem}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;color:var(--muted)}
+.card h3{margin:.25rem 0 .25rem;font-size:1.1rem}
+.card p{margin:0;color:var(--muted)}
+.card .body{padding:0 1rem 1rem}
+.card .actions{display:flex;gap:.5rem;padding:.75rem 1rem 1rem;margin-top:auto}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);padding:.6rem .8rem;border-radius:.7rem;text-decoration:none}
+.btn.primary{background:var(--brand);color:#fff;border-color: color-mix(in oklab, var(--brand) 75%, black)}
+details.accordion{border:1px solid var(--border);background:var(--card);border-radius:.9rem;padding:.75rem 1rem}
+details summary{cursor:pointer;font-weight:600} details[open] summary{color:var(--brand-2)}
+.notice{display:flex;gap:.75rem;align-items:flex-start;background: color-mix(in oklab, var(--brand) 16%, transparent); border: 1px solid color-mix(in oklab, var(--brand) 55%, transparent); padding:.9rem 1rem;border-radius:.8rem}
+footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted)}
+.footgrid{display:grid;grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));gap:1rem}
+.small{font-size:.9rem}
+</style>
 </head>
-<body>
-  <a class="sr-only" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <a class="brand" href="#">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2 22 20H2z"/></svg>
-        <span>Civic Resilience</span>
-      </a>
-      <nav>
-        <a href="#preparedness" id="link-prep">Emergency Preparedness</a>
-        <a href="#secure" id="link-sec">Secure Communication</a>
-        <a href="#topics" id="link-top">Hot Topics</a>
-      </nav>
-      <div class="spacer" aria-hidden="true"></div>
-      <label class="toggle-wrap" title="Toggle theme">
-        <input id="theme-toggle" type="checkbox" aria-label="Toggle dark mode" />
-        <span class="small">Dark</span>
-      </label>
-      <form class="search" role="search" aria-label="Site search" onsubmit="event.preventDefault()">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input id="q" type="search" placeholder="Search resources…" autocomplete="off" />
-      </form>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="container">
-        <h1>Actionable resources for uncertain times</h1>
-        <p>Practical checklists, trustworthy guides, and secure tools. Built as a static site on GitHub Pages—fast, private, portable.</p>
-        <div class="chips" role="list" aria-label="Quick filters">
-          <button class="chip" data-filter="kit">Go‑bag & home kits</button>
-          <button class="chip" data-filter="firstaid">First aid</button>
-          <button class="chip" data-filter="opsec">OPSEC</button>
-          <button class="chip" data-filter="privacy">Privacy</button>
-          <button class="chip" data-filter="civics">Civics</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Emergency Preparedness -->
-    <section id="preparedness" aria-labelledby="h-prep">
-      <div class="container">
-        <h2 id="h-prep">Emergency Preparedness</h2>
-        <p class="small" style="color:var(--muted)">Start with water, power, heat, and comms. The cards below are printable and work offline.</p>
-        <div class="grid" id="grid-prep" data-section="preparedness">
-          <!-- Card: 72‑Hour Kit -->
-          <article class="card" data-tags="kit firstaid">
-            <header>
-              <div class="eyebrow">Checklist</div>
-              <h3>72‑Hour Kit (Go‑Bag)</h3>
-              <p>What to pack for rapid evacuation—family, pets, and special meds considered.</p>
-            </header>
-            <div class="body">
-              <details class="accordion"><summary>Quick view</summary>
-                <ul>
-                  <li>Water: 3L per person/day</li>
-                  <li>Nutrition bars & electrolytes</li>
-                  <li>Copies of IDs & emergency contacts</li>
-                  <li>Medications + list of dosages</li>
-                  <li>Headlamp, power bank, USB‑C cable</li>
-                </ul>
-              </details>
-            </div>
-            <div class="actions">
-              <a class="btn primary" href="#" download>Download PDF</a>
-              <a class="btn" href="#">Read guide</a>
-            </div>
-          </article>
-
-          <!-- Card: Home Readiness -->
-          <article class="card" data-tags="kit">
-            <header>
-              <div class="eyebrow">Guide</div>
-              <h3>Home Readiness (2 Weeks)</h3>
-              <p>Water storage, shelf‑stable food, off‑grid heat, and sanitation planning.</p>
-            </header>
-            <div class="body">
-              <div class="notice" role="note"><strong>Tip:</strong> Prioritize water, then heat, then comms.</div>
-            </div>
-            <div class="actions">
-              <a class="btn" href="#">Fuel & power options</a>
-              <a class="btn" href="#">Water storage calculator</a>
-            </div>
-          </article>
-
-          <!-- Card: First Aid -->
-          <article class="card" data-tags="firstaid kit">
-            <header>
-              <div class="eyebrow">Checklist</div>
-              <h3>First Aid & Meds</h3>
-              <p>Build an IFAK + household kit and learn the life‑saving basics.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">IFAK basics</a>
-              <a class="btn" href="#">Printable checklist</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Secure Communication -->
-    <section id="secure" aria-labelledby="h-sec">
-      <div class="container">
-        <h2 id="h-sec">Secure Communication</h2>
-        <p class="small" style="color:var(--muted)">Private messaging, safer browsing, and operational security (OPSEC) practices.</p>
-        <div class="grid" id="grid-sec" data-section="secure">
-          <article class="card" data-tags="privacy opsec">
-            <header>
-              <div class="eyebrow">How‑to</div>
-              <h3>Messaging & Metadata</h3>
-              <p>Understand end‑to‑end encryption and the data that still leaks.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="https://ssd.eff.org/module/how-to-use-signal">Signal for Secure Comms</a>
-              <a class="btn" href="#">Threat model template</a>
-              <a class="btn" href="#">Beginner OPSEC</a>
-            </div>
-          </article>
-          <article class="card" data-tags="privacy">
-            <header>
-              <div class="eyebrow">Setup</div>
-              <h3>Device Hygiene</h3>
-              <p>Backups, full‑disk encryption, updates, and safe app sources.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">iOS & Android setup</a>
-              <a class="btn" href="#">Laptop hardening</a>
-            </div>
-          </article>
-          <article class="card" data-tags="privacy opsec">
-            <header>
-              <div class="eyebrow">Guide</div>
-              <h3>Browser Privacy</h3>
-              <p>Reduce tracking with sane defaults, containers, and DNS choices.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">Quick hardening</a>
-              <a class="btn" href="#">DNS & VPN basics</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hot Topics -->
-    <section id="topics" aria-labelledby="h-top">
-      <div class="container">
-        <h2 id="h-top">Hot Topics</h2>
-        <p class="small" style="color:var(--muted)">Curated issues affecting civil liberties and daily life. Non‑partisan summaries with calls to action.</p>
-
-        <div class="grid" id="grid-top" data-section="topics">
-          <article class="card" data-tags="civics privacy">
-            <header>
-              <div class="eyebrow">Explainer</div>
-              <h3>Digital Privacy & Surveillance</h3>
-              <p>What new policies mean for your data—and how to respond.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">Summary</a>
-              <a class="btn" href="#">Contact reps</a>
-            </div>
-          </article>
-          <article class="card" data-tags="civics">
-            <header>
-              <div class="eyebrow">Toolkit</div>
-              <h3>Speak Up Locally</h3>
-              <p>Find your city/county meetings, submit comments, and track votes.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">How‑to</a>
-              <a class="btn" href="#">Meeting finder</a>
-            </div>
-          </article>
-          <article class="card" data-tags="civics">
-            <header>
-              <div class="eyebrow">Template</div>
-              <h3>Polite, Effective Emails</h3>
-              <p>A respectful script to get your point across and be heard.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="#">Email template</a>
-              <a class="btn" href="#">Phone script</a>
-            </div>
-          </article>
-        </div>
-
-        <details class="accordion" style="margin-top:1rem">
-          <summary>Editorial stance & submissions</summary>
-          <p class="small">We aim for clarity, honesty, and citizen‑first practicality. Send corrections or sources via a pull request or issue.</p>
-        </details>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footgrid">
-      <div>
-        <strong>Civic Resilience</strong>
-        <p class="small">A volunteer project. Static by design. Host on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
-      </div>
-      <div>
-        <strong>Contribute</strong>
-        <p class="small">Open an issue or PR. Add sources in Markdown under <code>/content</code>. Keep privacy in mind—no trackers.</p>
-      </div>
-      <div>
-        <strong>License</strong>
-        <p class="small">Text: CC BY‑SA 4.0 · Code: MIT. Replace here if you choose different terms.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Simple active link highlighting on scroll
-    const sections = [
-      { id: 'preparedness', link: 'link-prep' },
-      { id: 'secure',        link: 'link-sec' },
-      { id: 'topics',        link: 'link-top' },
-    ];
-    const opts = { rootMargin: '-40% 0px -55% 0px', threshold: 0 };
-    const observer = new IntersectionObserver(entries => {
-      for (const e of entries){
-        const s = sections.find(x => x.id === e.target.id);
-        if (!s) continue;
-        const a = document.getElementById(s.link);
-        if (e.isIntersecting) a.classList.add('active'); else a.classList.remove('active');
-      }
-    }, opts);
-    sections.forEach(s => observer.observe(document.getElementById(s.id)));
-
-    // Theme toggle (stored in localStorage)
-    const toggle = document.getElementById('theme-toggle');
-    const theme = localStorage.getItem('theme');
-    if(theme === 'dark') toggle.checked = true;
-    toggle.addEventListener('change', () => {
-      localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
-      // CSS switches via :has() above
-      document.documentElement.style.transition = 'color 120ms ease, background 120ms ease';
-      setTimeout(() => document.documentElement.style.transition = '', 200);
-    });
-
-    // Search & chip filtering
-    const q = document.getElementById('q');
-    const chips = [...document.querySelectorAll('.chip')];
-    let activeTag = null;
-
-    function filterCards(){
-      const term = (q.value || '').toLowerCase().trim();
-      document.querySelectorAll('.grid .card').forEach(card => {
-        const tags = (card.dataset.tags || '').toLowerCase();
-        const text = card.innerText.toLowerCase();
-        const tagMatch = activeTag ? tags.includes(activeTag) : true;
-        const textMatch = term ? text.includes(term) : true;
-        card.style.display = (tagMatch && textMatch) ? '' : 'none';
-      });
-    }
-
-    q.addEventListener('input', filterCards);
-
-    chips.forEach(ch => {
-      ch.addEventListener('click', () => {
-        if (activeTag === ch.dataset.filter){ activeTag = null; chips.forEach(c=>c.classList.remove('active')); }
-        else { activeTag = ch.dataset.filter; chips.forEach(c=>c.classList.toggle('active', c===ch)); }
-        filterCards();
-      });
-    });
-  </script>
-</body>
 </html>
