@@ -75,97 +75,193 @@
         </form>
       </div>
     </header>
-    <main id="main">
-        <button id="calc" class="btn primary" type="button">Calculate</button>
-        <button id="reset" class="btn" type="button">Reset</button>
-        <button id="print" class="btn" type="button">Print plan</button>
+<!-- FILE: tools/water-calculator.html (BODY ONLY) -->
+<main id="main">
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="../">Home</a>
+          <span aria-hidden="true">›</span>
+          <a href="../preparedness/">Emergency Preparedness</a>
+          <span aria-hidden="true">›</span>
+          <span>Water Storage Calculator</span>
+        </nav>
+        <h1>Water Storage Calculator</h1>
+        <p>Estimate how much water to store for your household based on people, days, climate, activity, pets, and sanitation. Results show liters, gallons, weight, and container ideas.</p>
+      </div>
+    </section>
+  
+    <section>
+      <div class="container">
+        <div class="grid">
+          <!-- Inputs Card -->
+          <article class="card" id="inputs">
+            <header>
+              <div class="eyebrow">Inputs</div>
+              <h3>Household & Scenario</h3>
+            </header>
+            <div class="body">
+              <div class="grid">
+                <label>Adults
+                  <input id="adults" type="number" min="0" step="1" value="2" inputmode="numeric">
+                </label>
+                <label>Children
+                  <input id="children" type="number" min="0" step="1" value="2" inputmode="numeric">
+                </label>
+                <label>Days to cover
+                  <input id="days" type="number" min="1" step="1" value="14" inputmode="numeric">
+                </label>
+                <label>Scenario
+                  <select id="scenario">
+                    <option value="shelter" selected>Shelter‑in‑place</option>
+                    <option value="evac">Go‑bag / evacuation</option>
+                  </select>
+                </label>
+                <label>Climate
+                  <select id="climate">
+                    <option value="normal" selected>Normal</option>
+                    <option value="hot">Hot</option>
+                  </select>
+                </label>
+                <label>Activity level
+                  <select id="activity">
+                    <option value="low">Low</option>
+                    <option value="mod" selected>Moderate</option>
+                    <option value="high">High</option>
+                  </select>
+                </label>
+                <label>Children factor
+                  <select id="childFactor">
+                    <option value="1">Same as adults</option>
+                    <option value="0.75" selected>0.75× adult need</option>
+                  </select>
+                </label>
+                <label>Safety buffer
+                  <select id="buffer">
+                    <option value="0">None</option>
+                    <option value="0.1" selected>+10%</option>
+                    <option value="0.25">+25%</option>
+                  </select>
+                </label>
+                <label>Sanitation per person/day (gal)
+                  <input id="sanitation" type="number" min="0" step="0.1" value="0.5">
+                </label>
+                <label>Include sanitation?
+                  <select id="includeSan">
+                    <option value="yes" selected>Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </label>
+                <label>Dogs
+                  <input id="dogs" type="number" min="0" step="1" value="0">
+                </label>
+                <label>Dog water/day (gal)
+                  <input id="dogGal" type="number" min="0" step="0.1" value="1.0">
+                </label>
+                <label>Cats
+                  <input id="cats" type="number" min="0" step="1" value="0">
+                </label>
+                <label>Cat water/day (gal)
+                  <input id="catGal" type="number" min="0" step="0.1" value="0.3">
+                </label>
+                <label>Units
+                  <select id="units">
+                    <option value="both" selected>Gallons & Liters</option>
+                    <option value="gal">Gallons</option>
+                    <option value="L">Liters</option>
+                  </select>
+                </label>
+              </div>
+              <div class="actions" style="margin-top:.75rem">
+                <button id="calc" class="btn primary" type="button">Calculate</button>
+                <button id="reset" class="btn" type="button">Reset</button>
+                <button id="print" class="btn" type="button">Print plan</button>
+              </div>
+              <p class="muted" style="margin-top:.5rem">Rule of thumb: baseline ≈ 1 gal (3.8 L) per person per day for drinking & minimal hygiene; higher in heat/exertion. Go‑bag planning often uses ~3 L/person/day for drinking only.</p>
+            </div>
+          </article>
+  
+          <!-- Outputs Card -->
+          <article class="card" id="outputs">
+            <header>
+              <div class="eyebrow">Results</div>
+              <h3>Totals & Plan</h3>
+            </header>
+            <div class="body">
+              <p><strong>Total:</strong> <span id="totalDisplay" style="font-size:1.4rem; font-weight:700">—</span></p>
+              <p class="muted" id="breakdown" style="margin-top:-.25rem">&nbsp;</p>
+              <p style="margin-top:.5rem"><strong>Weight:</strong> <span id="weightDisplay">—</span> <span class="muted">(Water ≈ 8.34 lb/gal, 1 kg/L)</span></p>
+              <details class="accordion" style="margin-top:.75rem"><summary>Container suggestions</summary>
+                <ul id="containersList" class="list" style="margin-top:.25rem"></ul>
+              </details>
+              <details class="accordion" style="margin-top:.5rem"><summary>Print‑friendly summary</summary>
+                <ul id="summaryList" class="list" style="margin-top:.25rem"></ul>
+              </details>
+            </div>
+          </article>
         </div>
-        <p class="muted" style="margin-top:.5rem">Rule of thumb: baseline ≈ 1 gal (3.8 L) per person per day for drinking & minimal hygiene; higher in heat/exertion. Go‑bag planning often uses ~3 L/person/day for drinking only.</p>
-        </div>
-        </article>
-        
-        
-        <!-- Outputs Card -->
-        <article class="card" id="outputs">
-        <header>
-        <div class="eyebrow">Results</div>
-        <h3>Totals & Plan</h3>
-        </header>
-        <div class="body">
-        <p><strong>Total:</strong> <span id="totalDisplay" style="font-size:1.4rem; font-weight:700">—</span></p>
-        <p class="muted" id="breakdown" style="margin-top:-.25rem">&nbsp;</p>
-        <p style="margin-top:.5rem"><strong>Weight:</strong> <span id="weightDisplay">—</span> <span class="muted">(Water ≈ 8.34 lb/gal, 1 kg/L)</span></p>
-        <details class="accordion" style="margin-top:.75rem"><summary>Container suggestions</summary>
-        <ul id="containersList" class="list" style="margin-top:.25rem"></ul>
-        </details>
-        <details class="accordion" style="margin-top:.5rem"><summary>Print‑friendly summary</summary>
-        <ul id="summaryList" class="list" style="margin-top:.25rem"></ul>
-        </details>
-        </div>
-        </article>
-        </div>
-        </div>
-        </section>
-        </main>
+      </div>
+    </section>
+  </main>
+  
 
         <footer>
             <div class="container">
               <p class="small">Text: CC BY‑SA 4.0 · Code: MIT · <a href="../">Return to home</a></p>
             </div>
           </footer>
-
           <script defer>
             (function(){
-            'use strict';
-            const $ = (id) => document.getElementById(id);
-            const FIELDS = ['adults','children','days','scenario','climate','activity','childFactor','buffer','sanitation','includeSan','dogs','dogGal','cats','catGal','units'];
-            const STATE_KEY = 'cr_water_calc_v1';
-            function load(){ try{ const s=JSON.parse(localStorage.getItem(STATE_KEY)||'{}'); FIELDS.forEach(f=>{ if(s[f]!==undefined && $(f)) $(f).value=s[f]; }); }catch{} }
-            function save(){ const s={}; FIELDS.forEach(f=>{ const el=$(f); if(el) s[f]=el.value; }); localStorage.setItem(STATE_KEY, JSON.stringify(s)); }
-            const n=(v,d=0)=>{ const x=parseFloat(v); return Number.isFinite(x)?Math.max(0,x):d; };
-            const fmt=(x,d=1)=> x.toLocaleString(undefined,{maximumFractionDigits:d, minimumFractionDigits:0});
+              'use strict';
+              const $ = (id) => document.getElementById(id);
+              const FIELDS = ['adults','children','days','scenario','climate','activity','childFactor','buffer','sanitation','includeSan','dogs','dogGal','cats','catGal','units'];
+              const STATE_KEY = 'cr_water_calc_v1';
+              function load(){ try{ const s=JSON.parse(localStorage.getItem(STATE_KEY)||'{}'); FIELDS.forEach(f=>{ if(s[f]!==undefined && $(f)) $(f).value=s[f]; }); }catch{} }
+              function save(){ const s={}; FIELDS.forEach(f=>{ const el=$(f); if(el) s[f]=el.value; }); localStorage.setItem(STATE_KEY, JSON.stringify(s)); }
+              const n=(v,d=0)=>{ const x=parseFloat(v); return Number.isFinite(x)?Math.max(0,x):d; };
+              const fmt=(x,d=1)=> x.toLocaleString(undefined,{maximumFractionDigits:d, minimumFractionDigits:0});
             
-            
-            function calc(){
-            const adults=n($('adults').value,0), children=n($('children').value,0);
-            const days=Math.max(1,n($('days').value,1));
-            const scenario=$('scenario').value, climate=$('climate').value, activity=$('activity').value;
-            const childFactor=n($('childFactor').value,1), buffer=n($('buffer').value,0);
-            const sanitation=$('includeSan').value==='yes'? n($('sanitation').value,0):0;
-            const dogs=n($('dogs').value,0), dogGal=n($('dogGal').value,0), cats=n($('cats').value,0), catGal=n($('catGal').value,0);
-            const units=$('units').value; const galToL=3.785411784, lbPerGal=8.34;
-            let base=1.0; if(scenario==='evac') base=0.8; // gal/person/day
-            const climateK= climate==='hot'?1.3:1.0; const actK= activity==='high'?1.2 : activity==='low'?0.9:1.0;
-            const adultPPD=base*climateK*actK, childPPD=adultPPD*childFactor;
-            const peopleGal=days*(adults*adultPPD + children*childPPD);
-            const sanitationGal=days*sanitation*(adults+children);
-            const petsGal=days*(dogs*dogGal + cats*catGal);
-            let totalGal=(peopleGal + sanitationGal + petsGal) * (1+buffer);
-            const totalL= totalGal*galToL; const weightLb= totalGal*lbPerGal;
-            $('totalDisplay').textContent = units==='gal' ? `${fmt(totalGal,1)} gal` : units==='L' ? `${fmt(totalL,0)} L` : `${fmt(totalGal,1)} gal • ${fmt(totalL,0)} L`;
-            $('breakdown').textContent = `People: ${fmt(peopleGal,1)} gal | Sanitation: ${fmt(sanitationGal,1)} gal | Pets: ${fmt(petsGal,1)} gal (buffer ${Math.round(buffer*100)}%)`;
-            $('weightDisplay').textContent = `${fmt(weightLb,0)} lb (${fmt(totalL,0)} kg approx)`;
-            const list=$('containersList'); list.innerHTML='';
-            const li = (t)=>{ const el=document.createElement('li'); el.innerHTML=t; list.appendChild(el); };
-            const jugs1=Math.ceil(totalGal), cans5=Math.ceil(totalGal/5), drums55=Math.floor(totalGal/55), rem=totalGal-(drums55*55), cansAfter=Math.ceil(rem/5);
-            li(`<strong>Bottles only:</strong> ~${fmt(jugs1)} × 1‑gal jugs`);
-            li(`<strong>Jerrycans:</strong> ~${fmt(cans5)} × 5‑gal cans`);
-            li(`<strong>Drums + cans:</strong> ${drums55} × 55‑gal drum${drums55!==1?'s':''} + ${fmt(cansAfter)} × 5‑gal cans`);
-            const sum=$('summaryList'); sum.innerHTML='';
-            const si=(t)=>{ const el=document.createElement('li'); el.textContent=t; sum.appendChild(el); };
-            si(`${adults} adults, ${children} children for ${days} days (${scenario}, ${climate}, ${activity})`);
-            si(`Total: ${fmt(totalGal,1)} gal / ${fmt(totalL,0)} L; Weight: ${fmt(weightLb,0)} lb`);
-            if(sanitation>0) si(`Sanitation included: ${sanitation} gal/person/day`);
-            if(dogs||cats) si(`Pets: ${dogs} dog(s), ${cats} cat(s)`);
-            save();
-            }
-            load();
-            $('calc')?.addEventListener('click', calc);
-            $('reset')?.addEventListener('click', ()=>{ localStorage.removeItem(STATE_KEY); window.location.reload(); });
-            $('print')?.addEventListener('click', ()=>{ window.print(); });
-            calc();
+              function calc(){
+                const adults=n($('adults').value,0), children=n($('children').value,0);
+                const days=Math.max(1,n($('days').value,1));
+                const scenario=$('scenario').value, climate=$('climate').value, activity=$('activity').value;
+                const childFactor=n($('childFactor').value,1), buffer=n($('buffer').value,0);
+                const sanitation=$('includeSan').value==='yes'? n($('sanitation').value,0):0;
+                const dogs=n($('dogs').value,0), dogGal=n($('dogGal').value,0), cats=n($('cats').value,0), catGal=n($('catGal').value,0);
+                const units=$('units').value; const galToL=3.785411784, lbPerGal=8.34;
+                let base=1.0; if(scenario==='evac') base=0.8; // gal/person/day
+                const climateK= climate==='hot'?1.3:1.0; const actK= activity==='high'?1.2 : activity==='low'?0.9:1.0;
+                const adultPPD=base*climateK*actK, childPPD=adultPPD*childFactor;
+                const peopleGal=days*(adults*adultPPD + children*childPPD);
+                const sanitationGal=days*sanitation*(adults+children);
+                const petsGal=days*(dogs*dogGal + cats*catGal);
+                let totalGal=(peopleGal + sanitationGal + petsGal) * (1+buffer);
+                const totalL= totalGal*galToL; const weightLb= totalGal*lbPerGal;
+                $('totalDisplay').textContent = units==='gal' ? `${fmt(totalGal,1)} gal` : units==='L' ? `${fmt(totalL,0)} L` : `${fmt(totalGal,1)} gal • ${fmt(totalL,0)} L`;
+                $('breakdown').textContent = `People: ${fmt(peopleGal,1)} gal  |  Sanitation: ${fmt(sanitationGal,1)} gal  |  Pets: ${fmt(petsGal,1)} gal  (buffer ${Math.round(buffer*100)}%)`;
+                $('weightDisplay').textContent = `${fmt(weightLb,0)} lb (${fmt(totalL,0)} kg approx)`;
+                const list=$('containersList'); list.innerHTML='';
+                const li = (t)=>{ const el=document.createElement('li'); el.innerHTML=t; list.appendChild(el); };
+                const jugs1=Math.ceil(totalGal), cans5=Math.ceil(totalGal/5), drums55=Math.floor(totalGal/55), rem=totalGal-(drums55*55), cansAfter=Math.ceil(rem/5);
+                li(`<strong>Bottles only:</strong> ~${fmt(jugs1)} × 1‑gal jugs`);
+                li(`<strong>Jerrycans:</strong> ~${fmt(cans5)} × 5‑gal cans`);
+                li(`<strong>Drums + cans:</strong> ${drums55} × 55‑gal drum${drums55!==1?'s':''} + ${fmt(cansAfter)} × 5‑gal cans`);
+                const sum=$('summaryList'); sum.innerHTML='';
+                const si=(t)=>{ const el=document.createElement('li'); el.textContent=t; sum.appendChild(el); };
+                si(`${adults} adults, ${children} children for ${days} days (${scenario}, ${climate}, ${activity})`);
+                si(`Total: ${fmt(totalGal,1)} gal / ${fmt(totalL,0)} L; Weight: ${fmt(weightLb,0)} lb`);
+                if(sanitation>0) si(`Sanitation included: ${sanitation} gal/person/day`);
+                if(dogs||cats) si(`Pets: ${dogs} dog(s), ${cats} cat(s)`);
+                save();
+              }
+              load();
+              $('calc')?.addEventListener('click', calc);
+              $('reset')?.addEventListener('click', ()=>{ localStorage.removeItem(STATE_KEY); window.location.reload(); });
+              $('print')?.addEventListener('click', ()=>{ window.print(); });
+              calc();
             })();
             </script>
+            
 
 </body>
 </html>
