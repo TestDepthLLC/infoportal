@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emergency Preparedness — Civic Resilience</title>
+  <meta name="description" content="Emergency preparedness checklists, calculators, and guides for individuals and families." />
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2300a37a'/%3E%3Cpath d='M50 18 L72 82 H28 Z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#0b0c10;--bg-elev:#111218;--text:#e6e7ea;--muted:#b4b7c2;--brand:#00a37a;--brand-2:#4dc8b5;--card:#13151d;--border:#1f2230;--link:#7fd3ff;--warn:#ffcc00}
+    :root:has(#theme-toggle:not(:checked)){
+      color-scheme:light;--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00
+    }
+    @media (prefers-color-scheme: light){:root{--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00}}
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;gap:1rem;padding:.75rem 0}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}.brand svg{width:26px;height:26px}
+    .spacer{flex:1}
+    nav a{padding:.4rem .6rem;border-radius:.6rem} nav a.active, nav a:focus-visible{outline:none;background:var(--bg-elev)}
+    .toggle-wrap{display:flex;align-items:center;gap:.5rem}
+    .search{display:flex;align-items:center;gap:.5rem;background:var(--bg-elev);border:1px solid var(--border);border-radius:.75rem;padding:.5rem .75rem}
+    .search input{background:transparent;border:none;outline:none;color:var(--text);width:12rem}
+    .hero{padding:3.5rem 0 1.5rem;border-bottom:1px solid var(--border);background: radial-gradient(1200px 400px at 50% -10%, color-mix(in oklab, var(--brand-2) 20%, transparent), transparent)}
+    .hero h1{font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.1;margin:0 0 .5rem}
+    .hero p{color:var(--muted);max-width:70ch;margin:.25rem 0 0}
+    .breadcrumbs{display:flex;gap:.4rem;align-items:center;color:var(--muted);font-size:.9rem}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+    .chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:.35rem .6rem;border-radius:999px;cursor:pointer;font-size:.9rem}
+    .chip.active{outline:2px solid color-mix(in oklab, var(--brand) 60%, transparent)}
+    section{padding:2rem 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:1rem;overflow:clip;display:flex;flex-direction:column}
+    .card header{padding:1rem 1rem .25rem}
+    .eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;color:var(--muted)}
+    .card h3{margin:.25rem 0 .25rem;font-size:1.1rem}
+    .card p{margin:0;color:var(--muted)}
+    .card .body{padding:0 1rem 1rem}
+    .card .actions{display:flex;gap:.5rem;padding:.75rem 1rem 1rem;margin-top:auto}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);padding:.6rem .8rem;border-radius:.7rem;text-decoration:none}
+    .btn.primary{background:var(--brand);color:#fff;border-color: color-mix(in oklab, var(--brand) 75%, black)}
+    details.accordion{border:1px solid var(--border);background:var(--card);border-radius:.9rem;padding:.75rem 1rem}
+    details summary{cursor:pointer;font-weight:600} details[open] summary{color:var(--brand-2)}
+    .notice{display:flex;gap:.75rem;align-items:flex-start;background: color-mix(in oklab, var(--brand) 16%, transparent); border:1px solid color-mix(in oklab, var(--brand) 55%, transparent); padding:.9rem 1rem;border-radius:.8rem}
+    footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site">
+      <div class="container nav" role="navigation" aria-label="Primary">
+        <a class="brand" href="../">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 22 20H2z"/></svg>
+          <span>Civic Resilience</span>
+        </a>
+        <nav>
+          <a href="./" id="link-prep" class="active">Emergency Preparedness</a>
+          <a href="../secure/" id="link-sec">Secure Communication</a>
+          <a href="../topics/" id="link-top">Hot Topics</a>
+        </nav>
+        <div class="spacer" aria-hidden="true"></div>
+        <label class="toggle-wrap" title="Toggle theme">
+          <input id="theme-toggle" type="checkbox" aria-label="Toggle dark mode" />
+          <span class="small">Dark</span>
+        </label>
+        <form class="search" role="search" aria-label="Search preparedness" onsubmit="event.preventDefault()">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input id="q" type="search" placeholder="Search preparedness…" autocomplete="off" />
+        </form>
+      </div>
+    </header>
+    <main id="main">
+        <button id="calc" class="btn primary" type="button">Calculate</button>
+        <button id="reset" class="btn" type="button">Reset</button>
+        <button id="print" class="btn" type="button">Print plan</button>
+        </div>
+        <p class="muted" style="margin-top:.5rem">Rule of thumb: baseline ≈ 1 gal (3.8 L) per person per day for drinking & minimal hygiene; higher in heat/exertion. Go‑bag planning often uses ~3 L/person/day for drinking only.</p>
+        </div>
+        </article>
+        
+        
+        <!-- Outputs Card -->
+        <article class="card" id="outputs">
+        <header>
+        <div class="eyebrow">Results</div>
+        <h3>Totals & Plan</h3>
+        </header>
+        <div class="body">
+        <p><strong>Total:</strong> <span id="totalDisplay" style="font-size:1.4rem; font-weight:700">—</span></p>
+        <p class="muted" id="breakdown" style="margin-top:-.25rem">&nbsp;</p>
+        <p style="margin-top:.5rem"><strong>Weight:</strong> <span id="weightDisplay">—</span> <span class="muted">(Water ≈ 8.34 lb/gal, 1 kg/L)</span></p>
+        <details class="accordion" style="margin-top:.75rem"><summary>Container suggestions</summary>
+        <ul id="containersList" class="list" style="margin-top:.25rem"></ul>
+        </details>
+        <details class="accordion" style="margin-top:.5rem"><summary>Print‑friendly summary</summary>
+        <ul id="summaryList" class="list" style="margin-top:.25rem"></ul>
+        </details>
+        </div>
+        </article>
+        </div>
+        </div>
+        </section>
+        </main>
+
+        <footer>
+            <div class="container">
+              <p class="small">Text: CC BY‑SA 4.0 · Code: MIT · <a href="../">Return to home</a></p>
+            </div>
+          </footer>
+
+          <script defer>
+            (function(){
+            'use strict';
+            const $ = (id) => document.getElementById(id);
+            const FIELDS = ['adults','children','days','scenario','climate','activity','childFactor','buffer','sanitation','includeSan','dogs','dogGal','cats','catGal','units'];
+            const STATE_KEY = 'cr_water_calc_v1';
+            function load(){ try{ const s=JSON.parse(localStorage.getItem(STATE_KEY)||'{}'); FIELDS.forEach(f=>{ if(s[f]!==undefined && $(f)) $(f).value=s[f]; }); }catch{} }
+            function save(){ const s={}; FIELDS.forEach(f=>{ const el=$(f); if(el) s[f]=el.value; }); localStorage.setItem(STATE_KEY, JSON.stringify(s)); }
+            const n=(v,d=0)=>{ const x=parseFloat(v); return Number.isFinite(x)?Math.max(0,x):d; };
+            const fmt=(x,d=1)=> x.toLocaleString(undefined,{maximumFractionDigits:d, minimumFractionDigits:0});
+            
+            
+            function calc(){
+            const adults=n($('adults').value,0), children=n($('children').value,0);
+            const days=Math.max(1,n($('days').value,1));
+            const scenario=$('scenario').value, climate=$('climate').value, activity=$('activity').value;
+            const childFactor=n($('childFactor').value,1), buffer=n($('buffer').value,0);
+            const sanitation=$('includeSan').value==='yes'? n($('sanitation').value,0):0;
+            const dogs=n($('dogs').value,0), dogGal=n($('dogGal').value,0), cats=n($('cats').value,0), catGal=n($('catGal').value,0);
+            const units=$('units').value; const galToL=3.785411784, lbPerGal=8.34;
+            let base=1.0; if(scenario==='evac') base=0.8; // gal/person/day
+            const climateK= climate==='hot'?1.3:1.0; const actK= activity==='high'?1.2 : activity==='low'?0.9:1.0;
+            const adultPPD=base*climateK*actK, childPPD=adultPPD*childFactor;
+            const peopleGal=days*(adults*adultPPD + children*childPPD);
+            const sanitationGal=days*sanitation*(adults+children);
+            const petsGal=days*(dogs*dogGal + cats*catGal);
+            let totalGal=(peopleGal + sanitationGal + petsGal) * (1+buffer);
+            const totalL= totalGal*galToL; const weightLb= totalGal*lbPerGal;
+            $('totalDisplay').textContent = units==='gal' ? `${fmt(totalGal,1)} gal` : units==='L' ? `${fmt(totalL,0)} L` : `${fmt(totalGal,1)} gal • ${fmt(totalL,0)} L`;
+            $('breakdown').textContent = `People: ${fmt(peopleGal,1)} gal | Sanitation: ${fmt(sanitationGal,1)} gal | Pets: ${fmt(petsGal,1)} gal (buffer ${Math.round(buffer*100)}%)`;
+            $('weightDisplay').textContent = `${fmt(weightLb,0)} lb (${fmt(totalL,0)} kg approx)`;
+            const list=$('containersList'); list.innerHTML='';
+            const li = (t)=>{ const el=document.createElement('li'); el.innerHTML=t; list.appendChild(el); };
+            const jugs1=Math.ceil(totalGal), cans5=Math.ceil(totalGal/5), drums55=Math.floor(totalGal/55), rem=totalGal-(drums55*55), cansAfter=Math.ceil(rem/5);
+            li(`<strong>Bottles only:</strong> ~${fmt(jugs1)} × 1‑gal jugs`);
+            li(`<strong>Jerrycans:</strong> ~${fmt(cans5)} × 5‑gal cans`);
+            li(`<strong>Drums + cans:</strong> ${drums55} × 55‑gal drum${drums55!==1?'s':''} + ${fmt(cansAfter)} × 5‑gal cans`);
+            const sum=$('summaryList'); sum.innerHTML='';
+            const si=(t)=>{ const el=document.createElement('li'); el.textContent=t; sum.appendChild(el); };
+            si(`${adults} adults, ${children} children for ${days} days (${scenario}, ${climate}, ${activity})`);
+            si(`Total: ${fmt(totalGal,1)} gal / ${fmt(totalL,0)} L; Weight: ${fmt(weightLb,0)} lb`);
+            if(sanitation>0) si(`Sanitation included: ${sanitation} gal/person/day`);
+            if(dogs||cats) si(`Pets: ${dogs} dog(s), ${cats} cat(s)`);
+            save();
+            }
+            load();
+            $('calc')?.addEventListener('click', calc);
+            $('reset')?.addEventListener('click', ()=>{ localStorage.removeItem(STATE_KEY); window.location.reload(); });
+            $('print')?.addEventListener('click', ()=>{ window.print(); });
+            calc();
+            })();
+            </script>
+
+</body>
+</html>
