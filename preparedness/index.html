@@ -1,266 +1,73 @@
-<!-- FILE: preparedness/index.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emergency Preparedness — Civic Resilience</title>
-  <meta name="description" content="Emergency preparedness checklists, calculators, and guides for individuals and families." />
-  <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2300a37a'/%3E%3Cpath d='M50 18 L72 82 H28 Z' fill='white'/%3E%3C/svg%3E">
-  <style>
-    :root{--bg:#0b0c10;--bg-elev:#111218;--text:#e6e7ea;--muted:#b4b7c2;--brand:#00a37a;--brand-2:#4dc8b5;--card:#13151d;--border:#1f2230;--link:#7fd3ff;--warn:#ffcc00}
-    :root:has(#theme-toggle:not(:checked)){
-      color-scheme:light;--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00
-    }
-    @media (prefers-color-scheme: light){:root{--bg:#fff;--bg-elev:#f7f8fa;--text:#191b22;--muted:#495067;--brand:#006a55;--brand-2:#1aa38b;--card:#fff;--border:#e6e8ee;--link:#0a66c2;--warn:#8a6d00}}
-    *{box-sizing:border-box}
-    body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
-    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .container{width:min(1100px,92%);margin-inline:auto}
-    header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;gap:1rem;padding:.75rem 0}
-    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}.brand svg{width:26px;height:26px}
-    .spacer{flex:1}
-    nav a{padding:.4rem .6rem;border-radius:.6rem} nav a.active, nav a:focus-visible{outline:none;background:var(--bg-elev)}
-    .toggle-wrap{display:flex;align-items:center;gap:.5rem}
-    .search{display:flex;align-items:center;gap:.5rem;background:var(--bg-elev);border:1px solid var(--border);border-radius:.75rem;padding:.5rem .75rem}
-    .search input{background:transparent;border:none;outline:none;color:var(--text);width:12rem}
-    .hero{padding:3.5rem 0 1.5rem;border-bottom:1px solid var(--border);background: radial-gradient(1200px 400px at 50% -10%, color-mix(in oklab, var(--brand-2) 20%, transparent), transparent)}
-    .hero h1{font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.1;margin:0 0 .5rem}
-    .hero p{color:var(--muted);max-width:70ch;margin:.25rem 0 0}
-    .breadcrumbs{display:flex;gap:.4rem;align-items:center;color:var(--muted);font-size:.9rem}
-    .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
-    .chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:.35rem .6rem;border-radius:999px;cursor:pointer;font-size:.9rem}
-    .chip.active{outline:2px solid color-mix(in oklab, var(--brand) 60%, transparent)}
-    section{padding:2rem 0}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-    .card{border:1px solid var(--border);background:var(--card);border-radius:1rem;overflow:clip;display:flex;flex-direction:column}
-    .card header{padding:1rem 1rem .25rem}
-    .eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;color:var(--muted)}
-    .card h3{margin:.25rem 0 .25rem;font-size:1.1rem}
-    .card p{margin:0;color:var(--muted)}
-    .card .body{padding:0 1rem 1rem}
-    .card .actions{display:flex;gap:.5rem;padding:.75rem 1rem 1rem;margin-top:auto}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);padding:.6rem .8rem;border-radius:.7rem;text-decoration:none}
-    .btn.primary{background:var(--brand);color:#fff;border-color: color-mix(in oklab, var(--brand) 75%, black)}
-    details.accordion{border:1px solid var(--border);background:var(--card);border-radius:.9rem;padding:.75rem 1rem}
-    details summary{cursor:pointer;font-weight:600} details[open] summary{color:var(--brand-2)}
-    .notice{display:flex;gap:.75rem;align-items:flex-start;background: color-mix(in oklab, var(--brand) 16%, transparent); border:1px solid color-mix(in oklab, var(--brand) 55%, transparent); padding:.9rem 1rem;border-radius:.8rem}
-    footer{border-top:1px solid var(--border);padding:2rem 0;color:var(--muted)}
-  </style>
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <a class="brand" href="../">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 22 20H2z"/></svg>
-        <span>Civic Resilience</span>
-      </a>
-      <nav>
-        <a href="./" id="link-prep" class="active">Emergency Preparedness</a>
-        <a href="../secure/" id="link-sec">Secure Communication</a>
-        <a href="../topics/" id="link-top">Hot Topics</a>
-      </nav>
-      <div class="spacer" aria-hidden="true"></div>
-      <label class="toggle-wrap" title="Toggle theme">
-        <input id="theme-toggle" type="checkbox" aria-label="Toggle dark mode" />
-        <span class="small">Dark</span>
-      </label>
-      <form class="search" role="search" aria-label="Search preparedness" onsubmit="event.preventDefault()">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input id="q" type="search" placeholder="Search preparedness…" autocomplete="off" />
-      </form>
+---
+layout: default
+title: Emergency Preparedness
+description: Build resilience with checklists, calculators, and printable guides.
+---
+
+<section class="hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ site.baseurl }}/">Home</a>
+      <span aria-hidden="true">›</span>
+      <span>Emergency Preparedness</span>
+    </nav>
+    <h1>Emergency Preparedness</h1>
+    <p>Build resilience for outages, disasters, and evacuations with practical guides & checklists.</p>
+
+    <!-- Auto-generate chips from collection tags -->
+    {% assign tag_list = "" | split: "" %}
+    {% for doc in site.preparedness %}
+      {% assign tags = doc.tags | arrayify %}
+      {% assign tag_list = tag_list | concat: tags %}
+    {% endfor %}
+    {% assign tag_list = tag_list | uniq | sort %}
+
+    <div class="chips" role="list" aria-label="Filter" style="margin-top:1rem">
+      <button class="chip active" data-filter="all">All</button>
+      {% for t in tag_list %}
+        {% if t != "" %}
+          <button class="chip" data-filter="{{ t | downcase }}">{{ t }}</button>
+        {% endif %}
+      {% endfor %}
     </div>
-  </header>
+  </div>
+</section>
 
-  <main id="main">
-    <section class="hero">
-      <div class="container">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="../">Home</a>
-          <span aria-hidden="true">›</span>
-          <span>Emergency Preparedness</span>
-        </nav>
-        <h1>Emergency Preparedness</h1>
-        <p>Build resilience for outages, disasters, and evacuations with checklists, calculators, and printable guides.</p>
-        <div class="chips" role="list" aria-label="Filter preparedness content">
-          <button class="chip" data-filter="kit">Kits</button>
-          <button class="chip" data-filter="water">Water</button>
-          <button class="chip" data-filter="power">Power</button>
-          <button class="chip" data-filter="firstaid">First aid</button>
-          <button class="chip" data-filter="comms">Comms</button>
-          <button class="chip" data-filter="pets">Pets</button>
-          <button class="chip" data-filter="special">Special needs</button>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="h-prep-list">
-      <div class="container">
-        <h2 id="h-prep-list">Guides & Checklists</h2>
-        <p class="small" style="color:var(--muted)">Everything here is printable and designed for offline use.</p>
-        <div class="grid">
-          <article class="card" data-tags="kit firstaid">
-            <header>
-              <div class="eyebrow">Checklist</div>
-              <h3>72‑Hour Go‑Bag</h3>
-              <p>Rapid-evac kit for each household member, plus a shared bin.</p>
-            </header>
-            <div class="body">
-              <details class="accordion"><summary>Quick view</summary>
-                <ul>
-                  <li>Water (3L/person/day) + electrolytes</li>
-                  <li>Medications & copies of prescriptions</li>
-                  <li>IDs, cash, emergency contacts</li>
-                  <li>Headlamp, power bank, cables</li>
-                </ul>
-              </details>
-            </div>
-            <div class="actions">
-              <a class="btn primary" href="../assets/pdfs/go-bag.pdf" download>Download PDF</a>
-              <a class="btn" href="go-bag.html">Read guide</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="water kit">
-            <header>
-              <div class="eyebrow">Guide</div>
-              <h3>Water Storage Planner</h3>
-              <p>How much water you need and the best storage options for your space.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="../tools/water-calculator.html">Open calculator</a>
-              <a class="btn" href="water-storage.html">Read guide</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="power">
-            <header>
-              <div class="eyebrow">Safety</div>
-              <h3>Backup Power & Generator Basics</h3>
-              <p>Safe use, fuel storage, and carbon-monoxide precautions.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="power-basics.html">Read guide</a>
-              <a class="btn" href="../assets/pdfs/power-checklist.pdf" download>Checklist</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="comms">
-            <header>
-              <div class="eyebrow">How‑to</div>
-              <h3>Family Comms Plan</h3>
-              <p>Agree on channels, rendezvous points, and check-in cadence.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="family-comms.html">Template</a>
-              <a class="btn" href="../assets/pdfs/family-comms.pdf" download>Printable</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="kit firstaid">
-            <header>
-              <div class="eyebrow">Checklist</div>
-              <h3>IFAK & Home Med Kit</h3>
-              <p>Tourniquet, gauze, meds, and training priorities.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="ifak.html">IFAK basics</a>
-              <a class="btn" href="../assets/pdfs/ifak-checklist.pdf" download>Printable</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="pets kit">
-            <header>
-              <div class="eyebrow">Checklist</div>
-              <h3>Pet Preparedness</h3>
-              <p>Food, meds, carriers, and ID—don’t forget a spare leash.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="pets.html">Read guide</a>
-              <a class="btn" href="../assets/pdfs/pets.pdf" download>Printable</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="special kit">
-            <header>
-              <div class="eyebrow">Planner</div>
-              <h3>Accessibility & Special Needs</h3>
-              <p>Power for medical devices, medication cold-chain, backups.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="special-needs.html">Plan template</a>
-              <a class="btn" href="../assets/pdfs/special-needs.pdf" download>Printable</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="kit">
-            <header>
-              <div class="eyebrow">Guide</div>
-              <h3>Shelter‑in‑Place</h3>
-              <p>Heating, air quality, sanitation, and boredom busters.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="shelter-in-place.html">Read guide</a>
-              <a class="btn" href="../assets/pdfs/shelter-in-place.pdf" download>Printable</a>
-            </div>
-          </article>
-
-          <article class="card" data-tags="kit">
-            <header>
-              <div class="eyebrow">How‑to</div>
-              <h3>Vehicle Kit</h3>
-              <p>Year‑round trunk essentials for roadside problems and evacuations.</p>
-            </header>
-            <div class="actions">
-              <a class="btn" href="vehicle-kit.html">Read guide</a>
-              <a class="btn" href="../assets/pdfs/vehicle-kit.pdf" download>Printable</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p class="small">Text: CC BY‑SA 4.0 · Code: MIT · <a href="../">Return to home</a></p>
+<section>
+  <div class="container">
+    <h2>Guides & Checklists</h2>
+    <div class="grid">
+      {% assign items = site.preparedness | sort: "title" %}
+      {% for item in items %}
+        {% include card.html item=item %}
+      {% endfor %}
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script type="module">
-    // Persisted theme
-    const toggle = document.getElementById('theme-toggle');
-    if (toggle) {
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark') toggle.checked = true;
-      toggle.addEventListener('change', () => localStorage.setItem('theme', toggle.checked ? 'dark' : 'light'));
-    }
+<!-- Page-scoped script (module) to avoid global collisions) -->
+<script type="module">
+  // Minimal chip filtering
+  const chips = [...document.querySelectorAll('.chip')];
+  let active = 'all';
+  function filter() {
+    document.querySelectorAll('.grid .card').forEach(card => {
+      const tags = (card.dataset.tags || '').toLowerCase();
+      card.style.display = (active !== 'all' && !tags.includes(active)) ? 'none' : '';
+    });
+  }
+  chips.forEach(btn => btn.addEventListener('click', () => {
+    active = btn.dataset.filter;
+    chips.forEach(c => c.classList.toggle('active', c === btn));
+    filter();
+  }));
+  filter();
+</script>
 
-    // Search & tag filter (scoped to this page)
-    const q = document.getElementById('q');
-    const chips = q ? [...document.querySelectorAll('.chip')] : [];
-    let activeTag = null;
-    function filterCards(){
-      const term = (q?.value || '').toLowerCase().trim();
-      document.querySelectorAll('.grid .card').forEach(card => {
-        const tags = (card.dataset.tags || '').toLowerCase();
-        const text = card.innerText.toLowerCase();
-        const tagMatch = activeTag ? tags.includes(activeTag) : true;
-        const textMatch = term ? text.includes(term) : true;
-        card.style.display = (tagMatch && textMatch) ? '' : 'none';
-      });
-    }
-    q?.addEventListener('input', filterCards);
-    chips.forEach(ch => ch.addEventListener('click', () => {
-      activeTag = (activeTag === ch.dataset.filter) ? null : ch.dataset.filter;
-      chips.forEach(c => c.classList.toggle('active', c === ch && activeTag));
-      filterCards();
-    }));
-  </script>
-</body>
-</html>
+<!-- Temporary chip styles (we can move these to the layout later) -->
+<style>
+  .chips{display:flex;gap:.5rem;flex-wrap:wrap}
+  .chip{border:1px solid var(--border);background:var(--card);color:var(--text);
+        padding:.35rem .6rem;border-radius:999px;cursor:pointer;font-size:.9rem}
+  .chip.active{outline:2px solid color-mix(in oklab, var(--brand) 60%, transparent)}
+</style>
