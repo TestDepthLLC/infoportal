@@ -1,0 +1,10 @@
+title: Civic Resilience
+
+# If your site is at username.github.io/infoportal use this:
+baseurl: "/infoportal"
+# If your site is at username.github.io (no repo path), set: baseurl: ""
+
+collections:
+  preparedness:
+    output: true
+    permalink: /preparedness/:name/
