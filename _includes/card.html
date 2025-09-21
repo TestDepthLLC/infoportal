@@ -1,0 +1,30 @@
+<article class="card"
+  data-tags="{% assign tags = item.tags %}{% if tags %}{% if tags.first %}{% for t in tags %}{{ t }} {% endfor %}{% else %}{{ tags }}{% endif %}{% endif %}">
+  <header>
+    {% if item.eyebrow %}<div class="eyebrow">{{ item.eyebrow }}</div>{% endif %}
+    <h3>{{ item.title }}</h3>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+  </header>
+
+  {% if item.quick %}
+  <div class="body">
+    <details class="accordion"><summary>Quick view</summary>
+      <ul>{% for li in item.quick %}<li>{{ li }}</li>{% endfor %}</ul>
+    </details>
+  </div>
+  {% endif %}
+
+  <div class="actions">
+    {% assign primary = item.primary_url | default: item.url %}
+    {% if primary %}
+      <a class="btn primary" href="{{ primary | prepend: site.baseurl }}">
+        {{ item.primary_label | default: "Read guide" }}
+      </a>
+    {% endif %}
+    {% if item.secondary_url %}
+      <a class="btn" href="{{ item.secondary_url | prepend: site.baseurl }}">
+        {{ item.secondary_label | default: "Download" }}
+      </a>
+    {% endif %}
+  </div>
+</article>
