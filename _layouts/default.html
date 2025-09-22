@@ -7,6 +7,16 @@
   <meta name="description" content="{{ page.description | default: site.description }}">
   <meta name="color-scheme" content="light dark">
   <!-- Keep CSS inline for now to avoid asset path issues; we can extract later -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme'); // 'dark' | 'light'
+        if (saved) document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    })();
+  </script>
+  
+  
   <style>
     /* ===== Theme system (dark default; light when html[data-theme="light"]) ===== */
     :root{
@@ -91,6 +101,10 @@
   
 </head>
 <body>
+    <label class="toggle-wrap" style="display:flex;align-items:center;gap:.5rem" title="Toggle theme">
+        <input id="theme-toggle" type="checkbox" aria-label="Toggle dark mode">
+        <span class="small">Dark</span>
+      </label>
   <a class="sr-only" href="#main">Skip to content</a>
   <header class="site">
     <div class="container nav" role="navigation" aria-label="Primary">
@@ -124,5 +138,27 @@
       <p class="small">Text: CC BY-SA 4.0 · Code: MIT</p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var t = document.getElementById('theme-toggle');
+      if (!t) return;
+  
+      function currentTheme() {
+        return root.dataset.theme ||
+          (matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+      t.checked = currentTheme() === 'dark';
+  
+      t.addEventListener('change', function () {
+        var next = t.checked ? 'dark' : 'light';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
+  
+
 </body>
 </html>
