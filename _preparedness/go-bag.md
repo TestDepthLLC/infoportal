@@ -4,6 +4,8 @@ eyebrow: "Checklist"
 description: "Rapid-evac kit for each household member."
 tags: [kit, firstaid]
 permalink: /preparedness/go-bag/
+secondary_url: "/preparedness/go-bag.pdf"
+secondary_label: "Printable PDF"
 quick:
   - "Water (3L/person/day)"
   - "Meds & prescriptions"
