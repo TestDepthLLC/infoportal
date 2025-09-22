@@ -8,10 +8,29 @@ collections:
   preparedness:
     output: true
     permalink: /preparedness/:name/
+  secure:
+    output: true
+    permalink: /secure/:name/
+# topics
+#   output: true
+#   /secure/:name
 
 defaults:
+# Preparedness collection docs get the "guide" layout by default
   - scope:
-      path: ""
-      type: preparedness
+      path: ""              # Anywhere in the repo
+      type: preparedness    # applies only to _preparedness/*
     values:
       layout: guide
+      nav_section: preparedness
+
+# Secure collection docs
+  - scope:
+      path: ""
+      type: secure
+    values:
+      layout: guide
+      nav_section: secure
+
+# (Optional) Topics collection
+#

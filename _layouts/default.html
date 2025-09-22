@@ -42,11 +42,15 @@
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M12 2 22 20H2z"/></svg>
         <span>{{ site.title }}</span>
       </a>
-      <nav>
-        <a href="{{ site.baseurl }}/preparedness/">Emergency Preparedness</a>
-        <a href="{{ site.baseurl }}/secure/">Secure Communication</a>
-        <a href="{{ site.baseurl }}/topics/">Hot Topics</a>
-      </nav>
+      <!-- in _layouts/default.html -->
+<nav>
+    <a href="{{ site.baseurl }}/preparedness/"
+       class="{% if page.nav_section == 'preparedness' %}active{% endif %}">Emergency Preparedness</a>
+    <a href="{{ site.baseurl }}/secure/"
+       class="{% if page.nav_section == 'secure' %}active{% endif %}">Secure Communication</a>
+    <a href="{{ site.baseurl }}/topics/"
+       class="{% if page.nav_section == 'topics' %}active{% endif %}">Hot Topics</a>
+  </nav>
       <div class="spacer" aria-hidden="true"></div>
     </div>
   </header>
