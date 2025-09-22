@@ -3,10 +3,9 @@ title: "IFAK & Home Med Kit"
 eyebrow: "Checklist"
 description: "Trauma-focused essentials and training tips."
 tags: [firstaid, kit]
-primary_url: "/preparedness/ifak.html"
-primary_label: "IFAK basics"
-secondary_url: "/assets/pdfs/ifak-checklist.pdf"
-secondary_label: "Printable"
+permalink: /preparedness/first-aid/
+secondary_url: "/preparedness/first-aid.pdf"
+secondary_label: "Individual First Aid Kit Printable PDF"
 quick:
   - "Tourniquet + pressure bandage"
   - "Hemostatic gauze + chest seals"

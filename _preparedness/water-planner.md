@@ -3,10 +3,9 @@ title: "Water Storage Planner"
 eyebrow: "Guide"
 description: "How much water you need and practical container options."
 tags: [water, kit]
-primary_url: "/preparedness/tools/water-calculator.html"
-primary_label: "Open calculator"
-secondary_url: "/preparedness/water-storage.html"
-secondary_label: "Read guide"
+permalink: /preparedness/water-planning/
+secondary_url: "/preparedness/tools/water-calculator.html"
+secondary_label: "Open Calculator"
 quick:
   - "Baseline ~1 gal/person/day (shelter)"
   - "Increase for heat and activity"
