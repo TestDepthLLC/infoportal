@@ -33,7 +33,7 @@ tape, work gloves, towers and matches, according to the American Red Cross.
 
 4. **RSV, flu, and COVID-19 needs**. The lingering pandemic along with risks related to flu and RSV to older adults means that masks are an essential go
 bag item; they can also be used to filter out ash from fires. However, be aware that only N95 masks will filter out fire particulates that could
-trigger asthma or allergic responsses. Hand sanitizer that contains at least 60 percent alcohol, soap, antibackterial wipes, and a thermometer are
+trigger asthma or allergic responsses. Hand sanitizer that contains at least 60 percent alcohol, soap, antibacterial wipes, and a thermometer are
 important too.
 
 5. **Medications**. If there is a warning that you may be evacuated, call your pharmazy and request an extra medication refill. Pack a list of your medications
