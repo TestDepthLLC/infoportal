@@ -8,187 +8,78 @@ nav_section: home
 <section class="hero">
   <div class="container">
     <h1>Actionable resources for uncertain times</h1>
-    <p>Practical checklists, trustworthy guides, and secure tools. Built on GitHub Pages—fast, private, portable.</p>
-    <div class="chips" role="list" aria-label="Quick filters">
-      <button class="chip" data-filter="kit">Go-bag & home kits</button>
-      <button class="chip" data-filter="firstaid">First aid</button>
-      <button class="chip" data-filter="opsec">OPSEC</button>
-      <button class="chip" data-filter="privacy">Privacy</button>
-      <button class="chip" data-filter="civics">Civics</button>
+    <p>Practical checklists, trustworthy guides, and privacy-respecting tools. Built on GitHub Pages—fast, portable, and easy to mirror.</p>
+
+    <!-- Optional: chips as jump links (not filters) -->
+    <div class="chips" role="list" aria-label="Jump to section">
+      <button class="chip" data-jump="#prep-explain">Emergency Preparedness</button>
+      <button class="chip" data-jump="#secure-explain">Secure Communication</button>
+      <button class="chip" data-jump="#topics-explain">Hot Topics</button>
     </div>
   </div>
 </section>
 
-<!-- Emergency Preparedness -->
-<section id="preparedness" aria-labelledby="h-prep">
+<section id="prep-explain" aria-labelledby="h-prep">
   <div class="container">
     <h2 id="h-prep">Emergency Preparedness</h2>
-    <p class="small" style="color:var(--muted)">Start with water, power, heat, and comms. The cards below are printable and work offline.</p>
-    <div class="grid" id="grid-prep" data-section="preparedness">
-      <article class="card" data-tags="kit firstaid">
-        <header>
-          <div class="eyebrow">Checklist</div>
-          <h3>72-Hour Kit (Go-Bag)</h3>
-          <p>What to pack for rapid evacuation—family, pets, and special meds considered.</p>
-        </header>
-        <div class="body">
-          <details class="accordion"><summary>Quick view</summary>
-            <ul>
-              <li>Water: 3L per person/day</li>
-              <li>Nutrition bars & electrolytes</li>
-              <li>Copies of IDs & emergency contacts</li>
-              <li>Medications + list of dosages</li>
-              <li>Headlamp, power bank, USB-C cable</li>
-            </ul>
-          </details>
-        </div>
-        <div class="actions">
-          <a class="btn primary" href="{{ site.baseurl }}/assets/pdfs/go-bag.pdf" download>Download PDF</a>
-          <a class="btn" href="{{ site.baseurl }}/preparedness/">Read guides</a>
-        </div>
-      </article>
-
-      <article class="card" data-tags="kit">
-        <header>
-          <div class="eyebrow">Guide</div>
-          <h3>Home Readiness (2 Weeks)</h3>
-          <p>Water storage, shelf-stable food, off-grid heat, and sanitation planning.</p>
-        </header>
-        <div class="body">
-          <div class="notice" role="note"><strong>Tip:</strong> Prioritize water, then heat, then comms.</div>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/preparedness/">Fuel & power options</a>
-          <a class="btn" href="{{ site.baseurl }}/preparedness/tools/water-calculator.html">Water storage calculator</a>
-        </div>
-      </article>
-
-      <article class="card" data-tags="firstaid kit">
-        <header>
-          <div class="eyebrow">Checklist</div>
-          <h3>First Aid & Meds</h3>
-          <p>Build an IFAK + household kit and learn the life-saving basics.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/preparedness/ifak/">IFAK basics</a>
-          <a class="btn" href="{{ site.baseurl }}/assets/pdfs/ifak-checklist.pdf" download>Printable</a>
-        </div>
-      </article>
+    <p class="small" style="color:var(--muted)">
+      Focus on the big levers first: water, power/heat, communications, and first aid. Start small and build consistency.
+    </p>
+    <ul>
+      <li><strong>Water:</strong> store what you can, then add treatment (filters, tabs). Use the calculator to plan.</li>
+      <li><strong>Power & heat:</strong> light, phone charging, and basic warmth. Think batteries first, then fuel.</li>
+      <li><strong>First aid:</strong> IFAK for trauma, plus a household kit. Training beats gear.</li>
+      <li><strong>Evac kits:</strong> a simple 72-hour bag per person cuts decision load in a hurry.</li>
+    </ul>
+    <div class="actions" style="margin-top:.75rem">
+      <a class="btn primary" href="{{ site.baseurl }}/preparedness/">Explore Preparedness</a>
+      <a class="btn" href="{{ site.baseurl }}/preparedness/tools/water-calculator.html">Water calculator</a>
     </div>
   </div>
 </section>
 
-<!-- Secure Communication -->
-<section id="secure" aria-labelledby="h-sec">
+<section id="secure-explain" aria-labelledby="h-sec">
   <div class="container">
     <h2 id="h-sec">Secure Communication</h2>
-    <p class="small" style="color:var(--muted)">Private messaging, safer browsing, and operational security (OPSEC) practices.</p>
-    <div class="grid" id="grid-sec" data-section="secure">
-      <article class="card" data-tags="privacy opsec">
-        <header>
-          <div class="eyebrow">How-to</div>
-          <h3>Messaging & Metadata</h3>
-          <p>Understand end-to-end encryption and the data that still leaks.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/secure/">Threat model template</a>
-          <a class="btn" href="{{ site.baseurl }}/secure/">Beginner OPSEC</a>
-        </div>
-      </article>
-      <article class="card" data-tags="privacy">
-        <header>
-          <div class="eyebrow">Setup</div>
-          <h3>Device Hygiene</h3>
-          <p>Backups, full-disk encryption, updates, and safe app sources.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/secure/">iOS & Android setup</a>
-          <a class="btn" href="{{ site.baseurl }}/secure/">Laptop hardening</a>
-        </div>
-      </article>
-      <article class="card" data-tags="privacy opsec">
-        <header>
-          <div class="eyebrow">Guide</div>
-          <h3>Browser Privacy</h3>
-          <p>Reduce tracking with sane defaults, containers, and DNS choices.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/secure/">Quick hardening</a>
-          <a class="btn" href="{{ site.baseurl }}/secure/">DNS & VPN basics</a>
-        </div>
-      </article>
+    <p class="small" style="color:var(--muted)">
+      Keep conversations private, devices sane, and your footprint small. Start with a simple threat model.
+    </p>
+    <ul>
+      <li><strong>Messaging:</strong> end-to-end encryption, safety numbers, and backups.</li>
+      <li><strong>Device hygiene:</strong> updates, full-disk encryption, strong unlock, trusted app stores.</li>
+      <li><strong>Browser privacy:</strong> sane defaults, containers/profiles, and DNS choices.</li>
+      <li><strong>Operational security:</strong> minimize metadata; separate identities and tasks.</li>
+    </ul>
+    <div class="actions" style="margin-top:.75rem">
+      <a class="btn primary" href="{{ site.baseurl }}/secure/">Explore Secure Communication</a>
     </div>
   </div>
 </section>
 
-<!-- Hot Topics -->
-<section id="topics" aria-labelledby="h-top">
+<section id="topics-explain" aria-labelledby="h-top">
   <div class="container">
     <h2 id="h-top">Hot Topics</h2>
-    <p class="small" style="color:var(--muted)">Curated issues affecting civil liberties and daily life. Non-partisan summaries with calls to action.</p>
-
-    <div class="grid" id="grid-top" data-section="topics">
-      <article class="card" data-tags="civics privacy">
-        <header>
-          <div class="eyebrow">Explainer</div>
-          <h3>Digital Privacy & Surveillance</h3>
-          <p>What policies may mean for your data—and how to respond.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/topics/">Summary</a>
-          <a class="btn" href="{{ site.baseurl }}/topics/">Contact reps</a>
-        </div>
-      </article>
-      <article class="card" data-tags="civics">
-        <header>
-          <div class="eyebrow">Toolkit</div>
-          <h3>Speak Up Locally</h3>
-          <p>Find your city/county meetings, submit comments, and track votes.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/topics/">How-to</a>
-          <a class="btn" href="{{ site.baseurl }}/topics/">Meeting finder</a>
-        </div>
-      </article>
-      <article class="card" data-tags="civics">
-        <header>
-          <div class="eyebrow">Template</div>
-          <h3>Polite, Effective Emails</h3>
-          <p>A respectful script to get your point across and be heard.</p>
-        </header>
-        <div class="actions">
-          <a class="btn" href="{{ site.baseurl }}/topics/">Email template</a>
-          <a class="btn" href="{{ site.baseurl }}/topics/">Phone script</a>
-        </div>
-      </article>
+    <p class="small" style="color:var(--muted)">
+      Short explainers on current issues that affect everyday life: what’s changing, why it matters, and what you can do.
+    </p>
+    <ul>
+      <li><strong>Privacy & surveillance:</strong> what data is collected and realistic mitigations.</li>
+      <li><strong>Civic basics:</strong> how to contact reps effectively and monitor local decisions.</li>
+      <li><strong>Action:</strong> templates for respectful emails, comments, and calls.</li>
+    </ul>
+    <div class="actions" style="margin-top:.75rem">
+      <a class="btn primary" href="{{ site.baseurl }}/topics/">Explore Hot Topics</a>
     </div>
-
-    <details class="accordion" style="margin-top:1rem">
-      <summary>Editorial stance & submissions</summary>
-      <p class="small">We aim for clarity, honesty, and citizen-first practicality. Send corrections or sources via a pull request or issue.</p>
-    </details>
   </div>
 </section>
 
 <script type="module">
-  // Search + chips filtering (page-scoped)
-  const q = document.getElementById('q');
-  const chips = q ? [...document.querySelectorAll('.chip')] : [];
-  let activeTag = null;
-  function filterCards(){
-    const term = (q?.value || '').toLowerCase().trim();
-    document.querySelectorAll('.grid .card').forEach(card => {
-      const tags = (card.dataset.tags || '').toLowerCase();
-      const text = card.innerText.toLowerCase();
-      const tagMatch = activeTag ? tags.includes(activeTag) : true;
-      const textMatch = term ? text.includes(term) : true;
-      card.style.display = (tagMatch && textMatch) ? '' : 'none';
+  // Chips as jump links
+  document.querySelectorAll('.chip[data-jump]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const sel = btn.getAttribute('data-jump');
+      const el = document.querySelector(sel);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-  }
-  q?.addEventListener('input', filterCards);
-  chips.forEach(ch => ch.addEventListener('click', () => {
-    activeTag = (activeTag === ch.dataset.filter) ? null : ch.dataset.filter;
-    chips.forEach(c => c.classList.toggle('active', c === ch && activeTag));
-    filterCards();
-  }));
+  });
 </script>
