@@ -1,7 +1,7 @@
 ---
 title: "Home Emergency Prep Kit"
 eyebrow: "Checklist"
-description: "Trauma-focused essentials and training tips."
+description: "Home Emergency Preparedness Priorities / Things to Consider."
 tags: [home, emergency preparedness, kit]
 permalink: /preparedness/home-emer-prep/
 secondary_url: "/preparedness/home-emer-kit.pdf"
