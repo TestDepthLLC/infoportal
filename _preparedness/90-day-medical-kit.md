@@ -29,6 +29,8 @@ Washington’s natural landscape brings a variety of serious threats:
 
 **Extended Power Outages** – Ice storms or windstorms can down power lines, making it difficult to refrigerate medications or access electronic medical records.
 
+**Electromagnetic Pulse Events** - “Long-duration power outages can also result from less common but high-impact events such as severe geomagnetic storms or an electromagnetic pulse (EMP). While rare, these scenarios are included in federal preparedness planning because they can disable large portions of the electrical grid. The loss of power and communications would quickly overwhelm medical infrastructure and disrupt the delivery of medications—making a 90-day personal medical supply a critical layer of resilience.”
+
 ## The Current Climate of Political and Civil Unrest
 
 Beyond natural hazards, today’s environment of political polarization and occasional civil unrest can strain emergency services. Protests, localized violence, or sudden disruptions to supply chains may cause pharmacies and clinics to close without warning. Access to routine prescriptions or urgent care could be limited just when they are most needed.
