@@ -11,9 +11,9 @@ collections:
   secure:
     output: true
     permalink: /secure/:name/
-topics:
+  topics:
     output: true
-    permalink: /topics/:name
+    permalink: /topics/:name/
 
 defaults:
 # Preparedness collection docs get the "guide" layout by default
@@ -34,7 +34,7 @@ defaults:
 
 # Topics collection
   - scope:
-      path: "guide"
+      path: ""           # applies to all files in _topics/*
       type: topics
     values:
       layout: guide
