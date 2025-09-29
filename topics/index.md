@@ -19,7 +19,7 @@ nav_section: topics
   <div class="container">
     <h2>Guides & Checklists</h2>
     <div class="grid">
-      {% assign items = site.preparedness | sort: "title" %}
+      {% assign items = site.topics | sort: "title" %}
       {% for item in items %}
         {% include card.html item=item %}
       {% endfor %}
